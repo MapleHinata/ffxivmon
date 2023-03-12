@@ -140,7 +140,7 @@ namespace FFXIVMonReborn
             monitor.MessageSentEventHandler = MessageSent;
 
             monitor.OodleImplementation = _oodleImplementation;
-            monitor.UseDeucalion = true;
+            monitor.UseDeucalion = Settings.Default.UseDeucalion;
 
             // GamePath points to sqpack
             monitor.OodlePath = GetOodlePath();
