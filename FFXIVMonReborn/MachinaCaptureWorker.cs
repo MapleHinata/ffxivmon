@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Threading;
 using FFXIVMonReborn.DataModel;
 using FFXIVMonReborn.Properties;
 using FFXIVMonReborn.Views;
-using Machina;
 using Machina.FFXIV;
 using Machina.FFXIV.Headers;
 using Machina.FFXIV.Oodle;
@@ -150,6 +140,7 @@ namespace FFXIVMonReborn
             monitor.MessageSentEventHandler = MessageSent;
 
             monitor.OodleImplementation = _oodleImplementation;
+            monitor.UseDeucalion = true;
 
             // GamePath points to sqpack
             monitor.OodlePath = GetOodlePath();
