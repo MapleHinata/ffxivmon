@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using FFXIVMonReborn.DataModel;
@@ -141,6 +143,9 @@ namespace FFXIVMonReborn
 
             monitor.OodleImplementation = _oodleImplementation;
             monitor.UseDeucalion = Settings.Default.UseDeucalion;
+            
+            if(monitor.UseDeucalion)
+                monitor.ProcessID = (uint) (Process.GetProcessesByName("ffxiv_dx11").FirstOrDefault()?.Id ?? 0);
 
             // GamePath points to sqpack
             monitor.OodlePath = GetOodlePath();
