@@ -294,7 +294,7 @@ namespace FFXIVMonReborn.Database
             {
                 var arrayItem = new StructListItem
                 {
-                    NameCol = name.SubstringBetweenIndexes(0, name.IndexOf("[")) + $"[{i}]",
+                    NameCol = "  " + name.SubstringBetweenIndexes(0, name.IndexOf("[")) + $"[{i}]",
                     offset = reader.BaseStream.Position,
                     OffsetCol = reader.BaseStream.Position.ToString("X"),
                     isArrayElement = true,

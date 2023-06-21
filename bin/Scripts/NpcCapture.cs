@@ -28,9 +28,9 @@ if(Packet.Name == "NpcSpawn")
 	}
 
 	var entId = BitConverter.ToUInt32(Packet.Data, 4);
-	var exdData = new FFXIVMonReborn.ExdDataCache("D:/SteamLibrary/steamapps/common/FINAL FANTASY XIV Online/game/sqpack");
+    //        public static string GetExdField(string sheetName, int row, int col)
 
-    var name = exdData.GetBnpcName(parsed.bNPCName);
+    var name = FFXIVMonReborn.ExdReader.GetExdFieldAsString("BNpcName", (int)parsed.bNPCName, "Singular");
     
     Debug.WriteLine($"Spawn packet: {entId} Base: {parsed.bNPCBase} Name: {name}");
 
