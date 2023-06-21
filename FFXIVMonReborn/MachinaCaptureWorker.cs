@@ -143,10 +143,17 @@ namespace FFXIVMonReborn
 
             monitor.OodleImplementation = _oodleImplementation;
             monitor.UseDeucalion = Settings.Default.UseDeucalion;
-            
-            if(monitor.UseDeucalion)
-                monitor.ProcessID = (uint) (Process.GetProcessesByName("ffxiv_dx11").FirstOrDefault()?.Id ?? 0);
 
+            if (monitor.UseDeucalion)
+            {
+                int? id = Process.GetProcessesByName("ffxiv_dx11").FirstOrDefault()?.Id;
+                
+                if (id == null)
+                    throw new ThreadStateException("No ffxiv_dx11.exe process was found, please ensure that the DirectX 11 version of the game is running and try again.");
+                
+                monitor.ProcessID = (uint)id;
+            }
+            
             // GamePath points to sqpack
             monitor.OodlePath = GetOodlePath();
 
