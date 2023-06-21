@@ -818,7 +818,7 @@ namespace FFXIVMonReborn.Views
             }
         }
         
-        private void SwitchModeDeucalion_OnClick(object sender, RoutedEventArgs e)
+        private void SwitchModeDeucalion_OnChecked(object sender, RoutedEventArgs e)
         {
             if (AreTabsCapturing())
             {
@@ -826,23 +826,32 @@ namespace FFXIVMonReborn.Views
                     MessageBoxImage.Error);
                 return;
             }
-
-            if (SwitchModeDeucalion.IsChecked)
-            {
-                Settings.Default.UseDeucalion = false;
-                Settings.Default.Save();
-                SwitchModeDeucalion.IsChecked = false;
-                return;
-            }
-            
-            MessageBox.Show("Deucalion allows you to capture packets by injecting a DLL into the game, " +
-                            "skipping network capturing and Oodle. " +
-                            "However, Deucalion might not work with all game versions.", 
-                "FFXIVMon Reborn", MessageBoxButton.OK,
-                MessageBoxImage.Information);
             
             Settings.Default.UseDeucalion = true;
             Settings.Default.Save();
+        }
+
+        private void SwitchModeDeucalion_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            if (AreTabsCapturing())
+            {
+                MessageBox.Show("A capture is in progress.", "Error", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return;
+            }
+            
+            Settings.Default.UseDeucalion = false;
+            Settings.Default.Save();
+        }
+
+        private void SwitchModeDeucalion_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Settings.Default.UseDeucalion)
+                MessageBox.Show("Deucalion allows you to capture packets by injecting a DLL into the game, " +
+                                "skipping network capturing and Oodle. " +
+                                "However, Deucalion might not work with all game versions.", 
+                    "FFXIVMon Reborn", MessageBoxButton.OK,
+                    MessageBoxImage.Information);
         }
     }
 
